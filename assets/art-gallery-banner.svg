@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
+<title id="title">Art Gallery</title>
+<desc id="desc">A dark art gallery banner with colorful abstract framed artwork and the subtitle Static image gallery and carousel.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10111b"/><stop offset=".55" stop-color="#1b1830"/><stop offset="1" stop-color="#0b1721"/></linearGradient>
+  <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7a59"/><stop offset=".5" stop-color="#ffcf70"/><stop offset="1" stop-color="#ff5ea8"/></linearGradient>
+  <linearGradient id="b" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#4edbd1"/><stop offset=".5" stop-color="#5a8cff"/><stop offset="1" stop-color="#a879ff"/></linearGradient>
+  <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8f28b"/><stop offset=".5" stop-color="#39c6a4"/><stop offset="1" stop-color="#1684b6"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity=".38"/></filter>
+</defs>
+<rect width="1600" height="520" rx="28" fill="url(#bg)"/>
+<circle cx="1420" cy="60" r="250" fill="#5d54ad" opacity=".14"/>
+<circle cx="90" cy="490" r="260" fill="#e46c7a" opacity=".1"/>
+<g filter="url(#shadow)" transform="translate(980 72) rotate(-8 220 180)">
+  <rect width="245" height="320" rx="12" fill="#f3eee5"/>
+  <rect x="17" y="17" width="211" height="286" rx="5" fill="url(#a)"/>
+  <circle cx="128" cy="118" r="66" fill="#1d1a36" opacity=".82"/>
+  <path d="M20 242 Q92 145 154 238 T226 226 V303 H20Z" fill="#25203f" opacity=".9"/>
+</g>
+<g filter="url(#shadow)" transform="translate(1220 145) rotate(9 135 155)">
+  <rect width="210" height="270" rx="10" fill="#f3eee5"/>
+  <rect x="14" y="14" width="182" height="242" rx="4" fill="url(#b)"/>
+  <path d="M14 188 L78 92 L122 154 L158 112 L196 168 V256 H14Z" fill="#101b36" opacity=".82"/>
+  <circle cx="142" cy="64" r="27" fill="#ffd98c"/>
+</g>
+<g filter="url(#shadow)" transform="translate(830 188) rotate(5 100 120)">
+  <rect width="165" height="220" rx="9" fill="#f3eee5"/>
+  <rect x="12" y="12" width="141" height="196" rx="4" fill="url(#c)"/>
+  <path d="M12 145 Q52 85 85 139 T153 130 V208 H12Z" fill="#0c3340" opacity=".78"/>
+</g>
+<g fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif">
+  <text x="105" y="195" font-size="24" letter-spacing="8" fill="#a9a6c5">A CURATED VISUAL EXPERIENCE</text>
+  <text x="98" y="285" font-size="84" font-weight="800" letter-spacing="-3">ART GALLERY</text>
+  <text x="105" y="345" font-size="27" fill="#d0cde0">A static image gallery with an interactive carousel</text>
+  <text x="105" y="415" font-size="18" fill="#a9a6c5">HTML  •  CSS  •  jQuery Flipster  •  Local artwork assets</text>
+</g>
+</svg>
