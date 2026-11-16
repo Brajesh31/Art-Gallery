@@ -5,10 +5,14 @@ User-visible changes to Art Gallery are recorded here. Planned work belongs in [
 ## [Unreleased]
 
 ### Added
-- Expanded project, architecture, image-asset, dependency, accessibility, testing, and deployment documentation.
-- Mermaid diagrams for page navigation and runtime dependencies.
-- GitHub issue templates and static-site quality validation.
-- Repository governance and maintenance guidance.
+- Expanded project, architecture, image-asset, dependency, accessibility, testing, operations, privacy, and deployment documentation.
+- SVG project banner, architecture overview, visitor journey, and artwork publishing workflow.
+- Mermaid system context, component, use-case, data-flow, state, sequence, and deployment diagrams.
+- Architecture Decision Records and reusable documentation templates.
+- Asset provenance records and a verified file-size inventory for existing image assets.
+- Python repository validator and unit tests for local references and SVG/XML validity.
+- Dependabot configuration for GitHub Actions updates.
+- Expanded issue forms and pull request guidance.
 
 ### Changed
 - README now documents actual page structure, carousel, external resources, limitations, and local setup.
