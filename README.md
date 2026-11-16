@@ -15,6 +15,8 @@
 [![Repo size](https://img.shields.io/github/repo-size/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery)
 [![Local demo guide](https://img.shields.io/badge/demo-local%20preview-6c63ff?style=for-the-badge)](docs/demo.md)
 [![Documentation](https://img.shields.io/badge/docs-expanded-2ea44f?style=for-the-badge)](docs/README.md)
+![HTML5](https://img.shields.io/badge/HTML5-static%20site-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-responsive%20styles-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 </div>
 
@@ -28,6 +30,7 @@
 - [🧰 Technology stack](#-technology-stack)
 - [🗂️ Repository structure](#️-repository-structure)
 - [🚀 Run locally](#-run-locally)
+- [🎬 Demo and visual previews](#-demo-and-visual-previews)
 - [🖼️ Images and artwork](#️-images-and-artwork)
 - [🌐 External dependencies](#-external-dependencies)
 - [♿ Accessibility and responsive review](#-accessibility-and-responsive-review)
@@ -221,6 +224,16 @@ Open:
 - Media: [http://localhost:8000/youtube.html](http://localhost:8000/youtube.html)
 
 Press `Ctrl+C` to stop the local server.
+
+## 🎬 Demo and visual previews
+
+A verified public deployment URL has not been configured in this repository. The demo badge therefore points to the local preview guide, not to a fictitious live website.
+
+- [Run the local demo](docs/demo.md)
+- [Review the visual assets](assets/README.md)
+- [View the full diagram catalogue](docs/diagrams.md)
+
+The banner and SVG diagrams are documentation graphics. They are not screenshots of a live browser session.
 
 ## 🖼️ Images and artwork
 
