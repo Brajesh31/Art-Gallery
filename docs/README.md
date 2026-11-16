@@ -8,6 +8,7 @@ This documentation describes the existing static website and its current constra
 |---|---|
 | Understand scope and current capabilities | [Project overview](project-overview.md) |
 | Understand pages, assets, and dependencies | [Architecture](architecture.md) |
+| Understand file responsibilities | [Project structure](project-structure.md) |
 | Run the site locally | [Installation](installation.md) |
 | Understand CDN and external resource usage | [External resources](external-resources.md) |
 | Manage images and usage rights | [Image assets](image-assets.md) |
