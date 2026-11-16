@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780" role="img" aria-labelledby="t d">
+<title id="t">Art Gallery architecture overview</title><desc id="d">Three static HTML pages use local styles, carousel code and images, with external CDN and widget dependencies.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#1c2940"/></linearGradient><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L9 3 L0 6Z" fill="#8ba6d9"/></marker></defs>
+<rect width="1400" height="780" rx="26" fill="url(#bg)"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif" fill="#f8fafc">
+<text x="70" y="72" font-size="34" font-weight="700">Art Gallery · Static-site architecture</text>
+<text x="70" y="110" font-size="18" fill="#a9b7ce">Browser-rendered pages, local assets and external runtime dependencies</text>
+<rect x="520" y="145" width="360" height="76" rx="14" fill="#243b5b" stroke="#8ba6d9" stroke-width="2"/>
+<text x="700" y="192" text-anchor="middle" font-size="25" font-weight="700">Visitor browser</text>
+<rect x="80" y="300" width="350" height="110" rx="14" fill="#25465c" stroke="#62c7d7" stroke-width="2"/>
+<text x="255" y="345" text-anchor="middle" font-size="24" font-weight="700">index.html</text><text x="255" y="378" text-anchor="middle" font-size="17" fill="#c7e8ee">Home · Flipster carousel</text>
+<rect x="525" y="300" width="350" height="110" rx="14" fill="#25465c" stroke="#62c7d7" stroke-width="2"/>
+<text x="700" y="345" text-anchor="middle" font-size="24" font-weight="700">about.html</text><text x="700" y="378" text-anchor="middle" font-size="17" fill="#c7e8ee">About content and profile image</text>
+<rect x="970" y="300" width="350" height="110" rx="14" fill="#25465c" stroke="#62c7d7" stroke-width="2"/>
+<text x="1145" y="345" text-anchor="middle" font-size="24" font-weight="700">youtube.html</text><text x="1145" y="378" text-anchor="middle" font-size="17" fill="#c7e8ee">Media widget mount point</text>
+<path d="M700 221 V260 H255 V300 M700 260 V300 M700 260 H1145 V300" fill="none" stroke="#8ba6d9" stroke-width="3" marker-end="url(#arr)"/>
+<rect x="95" y="510" width="540" height="175" rx="14" fill="#193b36" stroke="#6ec7a7" stroke-width="2"/>
+<text x="365" y="552" text-anchor="middle" font-size="23" font-weight="700">Local repository assets</text>
+<text x="135" y="598" font-size="18">• style.css · about.css · footer.css</text><text x="135" y="630" font-size="18">• Flipster CSS/JS · images/*</text><text x="135" y="662" font-size="18">• Static HTML and local content</text>
+<rect x="765" y="510" width="540" height="175" rx="14" fill="#49324c" stroke="#c99bd5" stroke-width="2"/>
+<text x="1035" y="552" text-anchor="middle" font-size="23" font-weight="700">External resources</text>
+<text x="805" y="598" font-size="18">• Bootstrap CDN · jQuery CDN</text><text x="805" y="630" font-size="18">• Font Awesome · Google Fonts</text><text x="805" y="662" font-size="18">• Elfsight widget platform</text>
+<path d="M255 410 V460 H365 V510 M700 410 V460 H365 V510 M1145 410 V460 H1035 V510" fill="none" stroke="#6ec7a7" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M255 410 V445 H1035 V510 M700 410 V480 H1035" fill="none" stroke="#c99bd5" stroke-width="2" stroke-dasharray="8 7" marker-end="url(#arr)"/>
+<text x="70" y="742" font-size="15" fill="#9eabc2">No project-owned backend, database, authentication or API is present in the current source tree.</text>
+</g></svg>
