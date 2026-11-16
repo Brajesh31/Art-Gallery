@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Validate local references in Art Gallery's static repository.
-
-Uses only the Python standard library. It does not fetch external URLs or execute
-page JavaScript. Run from any working directory with:
-    python scripts/validate_repository.py
-"""
+"""Validate local references in Art Gallery's static repository."""
 from __future__ import annotations
 
 import re
@@ -16,20 +11,18 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PAGES = ("index.html", "about.html", "youtube.html")
-MARKDOWN_LINK_RE = re.compile(r"!?\\[[^\\]]*\\]\\(([^)]+)\\)")
-CSS_URL_RE = re.compile(r"url\\(\\s*(['\\\"]?)(.*?)\\1\\s*\\)", re.IGNORECASE)
+MARKDOWN_LINK_RE = re.compile("!?\\[[^\\]]*\\]\\(([^)]+)\\)")
+CSS_URL_RE = re.compile("url\\(\\s*(['\\\"]?)(.*?)\\1\\s*\\)", re.IGNORECASE)
 
 
 class PageParser(HTMLParser):
-    """Collect local resource references, links, and element IDs."""
-
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.resources: list[str] = []
-        self.links: list[str] = []
-        self.ids: set[str] = set()
+        self.resources = []
+        self.links = []
+        self.ids = set()
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+    def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         if values.get("id"):
             self.ids.add(str(values["id"]))
@@ -41,8 +34,7 @@ class PageParser(HTMLParser):
             self.links.append(str(values["href"]))
 
 
-def is_external_reference(raw: str) -> bool:
-    """Return True for references that should not be resolved on disk."""
+def is_external_reference(raw):
     value = raw.strip().strip("'\\\"")
     parsed = urlparse(value)
     return bool(parsed.scheme or parsed.netloc or value.startswith(
@@ -50,8 +42,7 @@ def is_external_reference(raw: str) -> bool:
     ))
 
 
-def resolve_local_reference(base: Path, raw: str) -> tuple[Path | None, str]:
-    """Resolve a relative URL path and return its optional fragment."""
+def resolve_local_reference(base, raw):
     value = raw.strip().strip("'\\\"")
     if is_external_reference(value):
         return None, ""
@@ -62,27 +53,26 @@ def resolve_local_reference(base: Path, raw: str) -> tuple[Path | None, str]:
     return (base / target).resolve(), parsed.fragment
 
 
-def markdown_links(content: str) -> list[str]:
-    """Extract inline Markdown links and images outside fenced code blocks."""
-    lines: list[str] = []
+def markdown_links(content):
+    lines = []
     in_fence = False
     fence_char = ""
     fence_length = 0
     for line in content.splitlines():
-        match = re.match(r"^\\s*(\\x60{3,}|~{3,})", line)
-        if match:
-            token = match.group(1)
+        stripped = line.lstrip()
+        marker = stripped[:3]
+        if marker == chr(96) * 3 or marker == "~~~":
             if not in_fence:
                 in_fence = True
-                fence_char = token[0]
-                fence_length = len(token)
-            elif token[0] == fence_char and len(token) >= fence_length:
+                fence_char = marker[0]
+                fence_length = len(stripped) - len(stripped.lstrip(marker[0]))
+            elif marker[0] == fence_char and len(stripped) - len(stripped.lstrip(marker[0])) >= fence_length:
                 in_fence = False
             continue
         if not in_fence:
             lines.append(line)
     result = []
-    for match in MARKDOWN_LINK_RE.finditer("\\n".join(lines)):
+    for match in MARKDOWN_LINK_RE.finditer(chr(10).join(lines)):
         target = match.group(1).strip()
         if target.startswith("<") and ">" in target:
             target = target[1:target.index(">")]
@@ -93,7 +83,7 @@ def markdown_links(content: str) -> list[str]:
     return result
 
 
-def check_html(page: Path, failures: list[str]) -> None:
+def check_html(page, failures):
     parser = PageParser()
     try:
         parser.feed(page.read_text(encoding="utf-8"))
@@ -111,7 +101,7 @@ def check_html(page: Path, failures: list[str]) -> None:
                 failures.append(f"{page.relative_to(ROOT)}: missing anchor #{fragment} in {target.relative_to(ROOT)}")
 
 
-def check_css(css_file: Path, failures: list[str]) -> None:
+def check_css(css_file, failures):
     try:
         content = css_file.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
@@ -124,14 +114,16 @@ def check_css(css_file: Path, failures: list[str]) -> None:
             failures.append(f"{css_file.relative_to(ROOT)}: missing CSS url() target {raw}")
 
 
-def check_markdown(md_file: Path, failures: list[str]) -> None:
+def check_markdown(md_file, failures):
     try:
         content = md_file.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
         failures.append(f"{md_file.relative_to(ROOT)}: unable to read Markdown: {exc}")
         return
-    fence_pattern = r"^\\s*(\\x60{3,}|~{3,})"
-    fence_count = len(re.findall(fence_pattern, content, re.MULTILINE))
+    fence_count = sum(
+        1 for line in content.splitlines()
+        if line.lstrip().startswith(chr(96) * 3) or line.lstrip().startswith("~~~")
+    )
     if fence_count % 2:
         failures.append(f"{md_file.relative_to(ROOT)}: unclosed Markdown code fence")
     for raw in markdown_links(content):
@@ -140,15 +132,15 @@ def check_markdown(md_file: Path, failures: list[str]) -> None:
             failures.append(f"{md_file.relative_to(ROOT)}: broken Markdown link {raw}")
 
 
-def check_svg(svg_file: Path, failures: list[str]) -> None:
+def check_svg(svg_file, failures):
     try:
         ET.parse(svg_file)
     except (ET.ParseError, OSError) as exc:
         failures.append(f"{svg_file.relative_to(ROOT)}: invalid SVG/XML: {exc}")
 
 
-def main() -> int:
-    failures: list[str] = []
+def main():
+    failures = []
     for relative in REQUIRED_PAGES:
         page = ROOT / relative
         if not page.is_file():
@@ -171,14 +163,14 @@ def main() -> int:
     if failures:
         print("Repository validation failed:")
         for failure in failures:
-            print(f" - {failure}")
+            print(" - " + failure)
         return 1
 
     print("Repository validation passed.")
-    print(f" - Required pages: {len(REQUIRED_PAGES)}")
-    print(f" - CSS files: {len(list(ROOT.rglob('*.css')))}")
-    print(f" - Markdown files: {len(list(ROOT.rglob('*.md')))}")
-    print(f" - SVG assets: {len(list(ROOT.rglob('*.svg')))}")
+    print(" - Required pages: " + str(len(REQUIRED_PAGES)))
+    print(" - CSS files: " + str(len(list(ROOT.rglob("*.css")))))
+    print(" - Markdown files: " + str(len(list(ROOT.rglob("*.md")))))
+    print(" - SVG assets: " + str(len(list(ROOT.rglob("*.svg")))))
     return 0
 
 
