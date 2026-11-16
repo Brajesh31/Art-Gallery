@@ -14,6 +14,7 @@ This documentation describes the existing static website and its current constra
 | Accessibility and quality | [Accessibility](accessibility.md), [Accessibility testing](accessibility-testing.md), [Compatibility](compatibility.md), [Performance](performance.md), [SEO](seo.md), [Testing](testing.md), [Testing matrix](testing-matrix.md), [Error handling](error-handling.md) |
 | Hosting and operations | [Deployment](deployment.md), [Hosting checklist](hosting-checklist.md), [Operations](operations.md), [Observability](observability.md), [Maintenance](maintenance.md), [Disaster recovery](disaster-recovery.md) |
 | Support and limitations | [FAQ](faq.md), [Troubleshooting](troubleshooting.md), [Glossary](glossary.md), [Limitations and roadmap](limitations-and-roadmap.md) |
+| Templates | [Documentation templates](templates/README.md), [ADR records](decisions/README.md) |
 
 ## 🗺️ Site map
 
@@ -41,6 +42,7 @@ flowchart TD
 - [Architecture overview](../assets/architecture-overview.svg)
 - [Visitor journey](../assets/visitor-journey.svg)
 - [Artwork publishing flow](../assets/artwork-publishing-flow.svg)
+- [Visual asset inventory](../assets/README.md)
 
 ## 🏛️ Repository policies
 
