@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" role="img" aria-labelledby="t d">
+<title id="t">Art Gallery visitor journey</title><desc id="d">Visitor opens home gallery, browses carousel, then navigates to About or Media pages.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#121827"/><stop offset="1" stop-color="#25203a"/></linearGradient><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L9 3 L0 6Z" fill="#9caee8"/></marker></defs>
+<rect width="1400" height="520" rx="24" fill="url(#bg)"/><g font-family="Inter,Segoe UI,Arial,sans-serif" fill="#f8fafc">
+<text x="70" y="75" font-size="34" font-weight="700">Visitor journey</text><text x="70" y="110" font-size="18" fill="#b9c2d8">A simple static navigation experience across three pages</text>
+<g stroke="#9caee8" stroke-width="3" marker-end="url(#a)" fill="none"><path d="M260 260 H390"/><path d="M610 260 H740"/><path d="M960 260 H1090"/></g>
+<rect x="70" y="200" width="190" height="120" rx="16" fill="#2c4569" stroke="#9caee8" stroke-width="2"/><text x="165" y="250" text-anchor="middle" font-size="23" font-weight="700">Open site</text><text x="165" y="284" text-anchor="middle" font-size="17">index.html</text>
+<rect x="390" y="200" width="220" height="120" rx="16" fill="#28574f" stroke="#7ad6b8" stroke-width="2"/><text x="500" y="250" text-anchor="middle" font-size="23" font-weight="700">Browse gallery</text><text x="500" y="284" text-anchor="middle" font-size="17">Flipster carousel</text>
+<rect x="740" y="200" width="220" height="120" rx="16" fill="#59405b" stroke="#d5a5e3" stroke-width="2"/><text x="850" y="250" text-anchor="middle" font-size="23" font-weight="700">Choose page</text><text x="850" y="284" text-anchor="middle" font-size="17">Navigation links</text>
+<rect x="1090" y="150" width="230" height="90" rx="14" fill="#28465e" stroke="#7dc7df" stroke-width="2"/><text x="1205" y="188" text-anchor="middle" font-size="21" font-weight="700">About page</text><text x="1205" y="216" text-anchor="middle" font-size="16">about.html</text>
+<rect x="1090" y="285" width="230" height="90" rx="14" fill="#59405b" stroke="#d5a5e3" stroke-width="2"/><text x="1205" y="323" text-anchor="middle" font-size="21" font-weight="700">Media page</text><text x="1205" y="351" text-anchor="middle" font-size="16">youtube.html</text>
+<path d="M960 240 H1020 V195 H1090 M960 280 H1020 V330 H1090" fill="none" stroke="#9caee8" stroke-width="3" marker-end="url(#a)"/>
+<text x="70" y="435" font-size="17" fill="#b9c2d8">The current site does not provide login, upload, search indexing, saved collections, or a backend API.</text>
+</g></svg>
