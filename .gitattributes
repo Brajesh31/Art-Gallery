@@ -1,5 +1,14 @@
 * text=auto eol=lf
+
+# Image and media assets are binary and should not receive line-ending conversion.
 *.jpg binary
 *.jpeg binary
 *.png binary
 *.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
