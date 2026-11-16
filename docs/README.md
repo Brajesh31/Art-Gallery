@@ -14,7 +14,8 @@ This documentation describes the existing static website and its current constra
 | Accessibility and quality | [Accessibility](accessibility.md), [Accessibility testing](accessibility-testing.md), [Compatibility](compatibility.md), [Performance](performance.md), [SEO](seo.md), [Testing](testing.md), [Testing matrix](testing-matrix.md), [Error handling](error-handling.md) |
 | Hosting and operations | [Deployment](deployment.md), [Hosting checklist](hosting-checklist.md), [Operations](operations.md), [Observability](observability.md), [Maintenance](maintenance.md), [Disaster recovery](disaster-recovery.md) |
 | Support and limitations | [FAQ](faq.md), [Troubleshooting](troubleshooting.md), [Glossary](glossary.md), [Limitations and roadmap](limitations-and-roadmap.md) |
-| Templates | [Documentation templates](templates/README.md), [ADR records](decisions/README.md) |
+| Architecture decisions | [ADR index](decisions/README.md), [Static architecture](decisions/0001-static-site-architecture.md), [Flipster carousel](decisions/0002-flipster-carousel.md), [Local artwork assets](decisions/0003-local-artwork-assets.md) |
+| Templates | [Template index](templates/README.md), [ADR template](templates/architecture-decision-record.md), [Artwork rights record](templates/artwork-rights-record.md), [Browser test report](templates/browser-test-report.md), [Feature proposal](templates/feature-proposal.md) |
 
 ## 🗺️ Site map
 
