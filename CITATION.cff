@@ -7,5 +7,10 @@ authors:
     given-names: Brajesh
 repository-code: "https://github.com/Brajesh31/Art-Gallery"
 license: MIT
-version: "1.0.0"
-date-released: "2025-01-01"
+abstract: "A static multi-page image gallery implemented with HTML, CSS, and browser-side JavaScript."
+keywords:
+  - art gallery
+  - static website
+  - HTML
+  - CSS
+  - image carousel
