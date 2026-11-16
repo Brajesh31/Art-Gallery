@@ -47,3 +47,13 @@ flowchart TD
 5. Keep external resources HTTPS-based and review their integrity attributes.
 6. Do not commit personal data, private source files, secrets, or unlicensed images.
 7. Keep Mermaid diagrams editable and update this index when guides change.
+
+
+## 🏛️ Repository policies
+
+- [Contributing](../CONTRIBUTING.md): branch, code, accessibility, and asset rules.
+- [Security policy](../SECURITY.md): dependency, embed, and private reporting guidance.
+- [Governance](../GOVERNANCE.md): project stewardship and decision principles.
+- [Accessibility statement](../ACCESSIBILITY.md): site accessibility expectations.
+- [Release process](../RELEASE.md): validation and rollback.
+- [Maintainers](../MAINTAINERS.md): repository ownership and responsibilities.
