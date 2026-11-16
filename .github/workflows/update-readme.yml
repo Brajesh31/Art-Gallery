@@ -1,4 +1,4 @@
-name: Update README Automation
+name: README documentation checks
 
 on:
   workflow_dispatch:
@@ -6,40 +6,57 @@ on:
     branches: [main]
     paths:
       - "README.md"
+      - "docs/**"
+      - "assets/**"
       - ".github/workflows/update-readme.yml"
-  schedule:
-    - cron: "0 6 * * 1"
+  pull_request:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "assets/**"
+      - ".github/workflows/update-readme.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: update-readme-${{ github.ref }}
+  group: readme-docs-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  update-readme:
+  readme:
+    name: Check README documentation entry points
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Update README timestamp
+      - name: Validate README assets and documentation links
         shell: bash
         run: |
-          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
-          TIMESTAMP_LINE="Last updated: $DATE"
-          if grep -q "Last updated:" README.md; then
-            sed -i "s/Last updated:.*/$TIMESTAMP_LINE/" README.md
-          else
-            printf "\n%s\n" "$TIMESTAMP_LINE" >> README.md
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          if git diff --cached --quiet; then
-            echo "No README changes detected."
-            exit 0
-          fi
-          git commit -m "chore: refresh README timestamp"
-          git push
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          readme = Path("README.md")
+          required = [
+              "assets/art-gallery-banner.svg",
+              "assets/architecture-overview.svg",
+              "assets/visitor-journey.svg",
+              "assets/artwork-publishing-flow.svg",
+              "docs/README.md",
+              "docs/demo.md",
+          ]
+          if not readme.is_file():
+              raise SystemExit("README.md is missing")
+          content = readme.read_text(encoding="utf-8")
+          if content.count("![") < 8:
+              raise SystemExit("README should display the banner and visual/status badges")
+          missing = [path for path in required if not Path(path).is_file()]
+          if missing:
+              raise SystemExit("Missing README-linked assets or guides: " + ", ".join(missing))
+          if "Local demo guide" not in content:
+              raise SystemExit("README must explain the current local demo status")
+          print("README documentation entry points and visual assets are present.")
+          PY
