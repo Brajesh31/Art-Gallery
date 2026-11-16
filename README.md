@@ -4,10 +4,17 @@
 
 ### A static multi-page gallery with a Flipster image carousel
 
+![Art Gallery visual banner](assets/art-gallery-banner.svg)
+
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/Brajesh31/Art-Gallery/quality.yml?branch=main&style=for-the-badge&label=quality%20checks)](https://github.com/Brajesh31/Art-Gallery/actions/workflows/quality.yml)
 [![GitHub stars](https://img.shields.io/github/stars/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery/network)
 [![GitHub issues](https://img.shields.io/github/issues/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery/issues)
 [![License](https://img.shields.io/github/license/Brajesh31/Art-Gallery?style=for-the-badge)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery/commits/main)
+[![Repo size](https://img.shields.io/github/repo-size/Brajesh31/Art-Gallery?style=for-the-badge)](https://github.com/Brajesh31/Art-Gallery)
+[![Local demo guide](https://img.shields.io/badge/demo-local%20preview-6c63ff?style=for-the-badge)](docs/demo.md)
+[![Documentation](https://img.shields.io/badge/docs-expanded-2ea44f?style=for-the-badge)](docs/README.md)
 
 </div>
 
@@ -108,6 +115,10 @@ flowchart TB
   Y --> E
 ```
 
+### 🖼️ Architecture visual
+
+![Art Gallery architecture overview](assets/architecture-overview.svg)
+
 ## 🔄 Navigation and runtime flow
 
 ```mermaid
@@ -126,6 +137,14 @@ flowchart TD
 ```
 
 The diagram describes static page navigation and dependencies. It does not represent a backend workflow because none exists in the current repository.
+
+### 👣 Visitor journey visual
+
+![Visitor journey across the three static pages](assets/visitor-journey.svg)
+
+### 🧾 Artwork publishing workflow
+
+![Artwork review and publishing workflow](assets/artwork-publishing-flow.svg)
 
 ## 🧰 Technology stack
 
@@ -147,21 +166,18 @@ The current site loads some dependencies from public CDNs. Their uptime, privacy
 ```text
 Art-Gallery/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   ├── workflows/
+│   ├── ISSUE_TEMPLATE/          # Bug, feature and documentation forms
+│   ├── workflows/               # CI validation and README maintenance
+│   ├── dependabot.yml           # GitHub Actions update schedule
 │   └── PULL_REQUEST_TEMPLATE.md
-├── docs/
-│   ├── README.md
-│   ├── project-overview.md
-│   ├── project-structure.md
-│   ├── architecture.md
-│   ├── installation.md
-│   ├── external-resources.md
-│   ├── image-assets.md
-│   ├── accessibility.md
-│   ├── testing.md
-│   └── limitations-and-roadmap.md
-├── images/
+├── assets/                      # SVG banner and visual diagrams
+├── docs/                        # Project-specific technical documentation
+│   ├── decisions/               # Architecture Decision Records
+│   ├── templates/               # Reusable documentation templates
+│   └── ...                      # Setup, architecture, security, testing, operations
+├── scripts/                     # Repository validation tooling
+├── tests/                       # Validator unit tests
+├── images/                      # Original gallery artwork
 │   ├── img1.jpg ... img10.jpg
 │   └── sample.png
 ├── index.html
@@ -260,20 +276,20 @@ See [ROADMAP.md](ROADMAP.md) and [Limitations and roadmap](docs/limitations-and-
 
 ## 📚 Documentation
 
-| Guide | Description |
-|---|---|
-| [Documentation index](docs/README.md) | All technical guides |
-| [Project overview](docs/project-overview.md) | Scope, pages and feature boundary |
-| [Project structure](docs/project-structure.md) | File and directory responsibilities |
-| [Architecture](docs/architecture.md) | Page, asset and dependency diagrams |
-| [Installation](docs/installation.md) | Local preview and editing workflow |
-| [External resources](docs/external-resources.md) | CDN and third-party script review |
-| [Image assets](docs/image-assets.md) | Artwork and attribution policy |
-| [Accessibility](docs/accessibility.md) | Keyboard, image and responsive checks |
-| [Testing](docs/testing.md) | Static and manual validation |
-| [Limitations and roadmap](docs/limitations-and-roadmap.md) | Gaps and planned work |
-| [FAQ](docs/faq.md) | Common questions |
-| [Deployment](docs/deployment.md) | Static hosting |
+The documentation set now covers project scope, visitor usage, local demo, configuration, architecture, diagrams, file structure, installation, development, design conventions, artwork metadata, image inventory, external dependencies, privacy, threat modelling, accessibility, browser compatibility, performance, SEO, error handling, testing, deployment, operations, maintenance, disaster recovery, API/database boundaries, limitations, and support.
+
+Start with the [complete documentation index](docs/README.md). Architecture decisions are recorded in [docs/decisions](docs/decisions/README.md).
+
+## 🧪 Automated repository checks
+
+The quality workflow runs standard-library Python tests and validates local HTML references, CSS `url(...)` assets, Markdown links/code fences, and SVG/XML files. It does not fetch external links or execute browser JavaScript. Browser, visual, keyboard, and assistive-technology checks remain manual.
+
+Run the same checks locally:
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/validate_repository.py
+```
 
 ## 🤝 Contributing
 
