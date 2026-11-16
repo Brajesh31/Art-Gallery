@@ -1,0 +1,33 @@
+name: ✨ Feature request
+description: Propose a scoped gallery improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Who needs this and why is the current site insufficient?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: Describe user interaction, expected UI, and edge cases.
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility considerations
+      description: Keyboard, focus, screen reader, contrast, reduced motion, responsive layout.
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Content and dependency considerations
+      description: Mention image rights, new external services, scripts, privacy, or data flows.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
