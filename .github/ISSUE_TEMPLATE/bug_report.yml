@@ -1,0 +1,55 @@
+name: 🐛 Bug report
+description: Report a reproducible defect in Art Gallery.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include private contact information, credentials, or copyrighted assets you cannot share."
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe expected and actual page behaviour.
+    validations:
+      required: true
+  - type: dropdown
+    id: page
+    attributes:
+      label: Affected page
+      options:
+        - Home (index.html)
+        - About (about.html)
+        - Media (youtube.html)
+        - Multiple pages
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Sanitized console errors
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Safety and ownership
+      options:
+        - label: I have removed private information and only attached assets I have permission to share.
+          required: true
