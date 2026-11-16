@@ -36,6 +36,7 @@
 - [♿ Accessibility and responsive review](#-accessibility-and-responsive-review)
 - [🧪 Validation](#-validation)
 - [⚠️ Known limitations](#️-known-limitations)
+- [🧱 Technical debt and known issues](#-technical-debt-and-known-issues)
 - [🗺️ Roadmap](#️-roadmap)
 - [📚 Documentation](#-documentation)
 - [🤝 Contributing](#-contributing)
@@ -274,6 +275,10 @@ Then open each page and inspect the browser console and Network panel. See [Test
 - Image licensing and creator attribution are not established for every existing image.
 - Some external resource URLs and dependencies require a security and maintenance review.
 - The carousel and external widgets depend on browser-side scripts and provider availability.
+
+## 🧱 Technical debt and known issues
+
+The current maintenance gaps are tracked explicitly rather than hidden behind feature claims. See [TECHNICAL_DEBT.md](TECHNICAL_DEBT.md) and the [known issues register](docs/known-issues.md).
 
 ## 🗺️ Roadmap
 
