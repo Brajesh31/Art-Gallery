@@ -14,10 +14,13 @@ This documentation describes the existing static website and its current constra
 | Manage images and usage rights | [Image assets](image-assets.md) |
 | Review accessibility and responsive requirements | [Accessibility](accessibility.md) |
 | Publish to static hosting | [Deployment](deployment.md) |
+| Understand why there is no persistence layer | [Database](database.md) |
 | Validate links, assets, and page structure | [Testing](testing.md) |
 | Review known issues and future improvements | [Limitations and roadmap](limitations-and-roadmap.md) |
+| Understand the absence of backend endpoints | [API status](api.md) |
 | Find answers to common questions | [FAQ](faq.md) |
-| Understand repository structure | [Project structure](project-structure.md) |
+| Diagnose local page and carousel issues | [Troubleshooting](troubleshooting.md) |
+| Contribute code and content | [Development](development.md) |
 
 ## 🗺️ Site map
 
@@ -45,10 +48,9 @@ flowchart TD
 2. Do not describe placeholder search controls or external widgets as working features unless verified.
 3. Use relative paths and preserve filename case.
 4. Record image source and usage permission before redistributing artwork.
-5. Keep external resources HTTPS-based and review their integrity attributes.
+5. Keep external resources HTTPS-based and review integrity attributes.
 6. Do not commit personal data, private source files, secrets, or unlicensed images.
 7. Keep Mermaid diagrams editable and update this index when guides change.
-
 
 ## 🏛️ Repository policies
 
