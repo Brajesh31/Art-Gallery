@@ -47,6 +47,8 @@ flowchart TD
 
 ## 🏛️ Repository policies
 
+- [Technical debt register](../TECHNICAL_DEBT.md): prioritized maintenance issues.
+
 - [Contributing](../CONTRIBUTING.md)
 - [Security policy](../SECURITY.md)
 - [Governance](../GOVERNANCE.md)
