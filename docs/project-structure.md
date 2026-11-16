@@ -5,61 +5,75 @@
 ```text
 Art-Gallery/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/          # Structured bug, feature, and documentation reports
-│   ├── workflows/               # GitHub Actions workflows
+│   ├── ISSUE_TEMPLATE/              # Bug, feature and documentation issue forms
+│   ├── workflows/                   # Quality checks and README maintenance
+│   ├── dependabot.yml               # GitHub Actions update schedule
 │   └── PULL_REQUEST_TEMPLATE.md
-├── images/
-│   ├── img1.jpg ... img10.jpg   # Gallery images
-│   └── sample.png               # About/profile image
+├── assets/
+│   ├── art-gallery-banner.svg       # README/project banner
+│   ├── architecture-overview.svg    # Static architecture visual
+│   ├── visitor-journey.svg          # Visitor navigation visual
+│   └── artwork-publishing-flow.svg  # Artwork governance visual
 ├── docs/
-│   ├── README.md
-│   ├── project-overview.md
-│   ├── project-structure.md
-│   ├── architecture.md
-│   ├── installation.md
-│   ├── deployment.md
-│   ├── external-resources.md
-│   ├── image-assets.md
-│   ├── accessibility.md
-│   ├── testing.md
-│   ├── limitations-and-roadmap.md
-│   └── ...
-├── index.html                   # Home gallery and carousel
-├── about.html                   # About page
-├── youtube.html                 # Media page with external widget mount point
-├── style.css                    # Shared base and page backgrounds
-├── about.css                    # About page layout and typography
-├── footer.css                   # Shared footer styles
-├── jquery.flipster.min.css      # Local carousel styles
-├── jquery.flipster.min.js       # Local carousel behaviour
+│   ├── decisions/                   # Architecture Decision Records
+│   ├── templates/                   # Reusable document templates
+│   └── *.md                         # Project-specific technical guides
+├── images/
+│   ├── img1.jpg ... img10.jpg       # Existing gallery artwork
+│   └── sample.png                  # Existing About page image
+├── scripts/
+│   └── validate_repository.py       # Local reference and SVG validation
+├── tests/
+│   └── test_repository_validation.py
+├── index.html                       # Home gallery and carousel
+├── about.html                       # About page
+├── youtube.html                     # Media page/widget mount point
+├── style.css                        # Shared base styles
+├── about.css                        # About page styles
+├── footer.css                       # Shared footer styles
+├── jquery.flipster.min.css          # Vendored carousel styles
+├── jquery.flipster.min.js           # Vendored carousel behaviour
 ├── README.md
-├── LICENSE
-└── ...
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
+├── SUPPORT.md
+├── GOVERNANCE.md
+├── MAINTAINERS.md
+├── ACCESSIBILITY.md
+├── RELEASE.md
+├── CHANGELOG.md
+├── ROADMAP.md
+└── LICENSE
 ```
 
 ## File responsibilities
 
 | Path | Responsibility |
 |---|---|
-| `index.html` | Home navigation, carousel markup, image references, footer, and carousel initialization |
-| `about.html` | About content, profile image, navigation, and footer |
-| `youtube.html` | External media-widget mount point, navigation, and footer |
+| `index.html` | Home navigation, carousel markup, image references, footer, carousel initialization |
+| `about.html` | About content, profile image, navigation, footer |
+| `youtube.html` | Third-party widget mount point, navigation, footer |
 | `style.css` | Shared reset, backgrounds, and page-level layout |
-| `about.css` | About content layout, text styles, and responsive breakpoints |
-| `footer.css` | Distributed footer layout and responsive footer styles |
+| `about.css` | About content layout, typography, responsive breakpoints |
+| `footer.css` | Footer layout and responsive behaviour |
 | `jquery.flipster.min.css` | Vendored Flipster carousel styles |
 | `jquery.flipster.min.js` | Vendored Flipster carousel script |
-| `images/` | Local artwork and page image assets |
-| `.github/workflows/` | Repository validation and README automation |
+| `images/` | Original local artwork and page image |
+| `assets/` | Project banner and documentation diagrams |
+| `docs/` | Architecture, operations, testing, security, and contributor guides |
+| `scripts/` | Standard-library repository validation |
+| `tests/` | Unit tests for validation helpers |
+| `.github/workflows/` | CI validation and README automation |
 
-## Runtime dependency direction
+## Runtime boundaries
 
-The HTML pages load CSS and JavaScript into a browser. Local assets are addressed using relative paths. External libraries are loaded from public CDNs. There is no application server or data persistence layer.
+HTML pages load local CSS, scripts, and images. External libraries and widget code are loaded from public providers. There is no first-party API, data store, user session, or server-side execution.
 
 ## Change rules
 
 - Update this inventory when a page, stylesheet, script, or asset directory changes.
-- Preserve image filenames unless every reference is updated.
+- Preserve existing image filenames unless all references are updated.
 - Verify path case using a Linux-compatible check before deployment.
+- Keep vendored minified libraries separate from project-authored code.
 - Do not add build tooling or a framework solely to make the tree look more complex.
-- Keep minified vendor libraries intact unless intentionally upgrading them from a traceable upstream release.
