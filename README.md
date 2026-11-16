@@ -197,6 +197,7 @@ Art-Gallery/
 ├── SECURITY.md
 ├── CHANGELOG.md
 ├── ROADMAP.md
+├── TECHNICAL_DEBT.md
 └── LICENSE
 ```
 
