@@ -1,26 +1,19 @@
 # 📚 Art Gallery documentation
 
-This documentation describes the existing static website and its current constraints. The tracked project contains three HTML pages, local CSS, a locally bundled Flipster carousel library, local image assets, and third-party resources loaded from CDNs. It does not contain a backend, server-side API, database, authentication, package manager, or build pipeline.
+This documentation describes the existing static website and its current constraints. The project contains three HTML pages, local CSS, a locally bundled Flipster carousel library, local artwork, and third-party resources loaded from CDNs. It does not contain a backend, server-side API, database, authentication, package manager, or build pipeline.
 
-## 🧭 Start here
+## 🧭 Documentation map
 
-| Goal | Guide |
+| Area | Guides |
 |---|---|
-| Understand scope and current capabilities | [Project overview](project-overview.md) |
-| Understand pages, assets, and dependencies | [Architecture](architecture.md) |
-| Understand file responsibilities | [Project structure](project-structure.md) |
-| Run the site locally | [Installation](installation.md) |
-| Understand CDN and external resource usage | [External resources](external-resources.md) |
-| Manage images and usage rights | [Image assets](image-assets.md) |
-| Review accessibility and responsive requirements | [Accessibility](accessibility.md) |
-| Publish to static hosting | [Deployment](deployment.md) |
-| Understand why there is no persistence layer | [Database](database.md) |
-| Validate links, assets, and page structure | [Testing](testing.md) |
-| Review known issues and future improvements | [Limitations and roadmap](limitations-and-roadmap.md) |
-| Understand the absence of backend endpoints | [API status](api.md) |
-| Find answers to common questions | [FAQ](faq.md) |
-| Diagnose local page and carousel issues | [Troubleshooting](troubleshooting.md) |
-| Contribute code and content | [Development](development.md) |
+| Project scope and experience | [Project overview](project-overview.md), [Usage](usage.md), [Demo](demo.md), [Requirements](requirements.md), [User stories](user-stories.md), [Acceptance criteria](acceptance-criteria.md) |
+| Architecture and decisions | [Architecture](architecture.md), [Diagrams](diagrams.md), [Project structure](project-structure.md), [Decision records](decisions/README.md) |
+| Setup and development | [Installation](installation.md), [Configuration](configuration.md), [Development](development.md), [Commands](commands.md) |
+| Design and content | [Design system](design-system.md), [Content model](content-model.md), [Content guidelines](content-guidelines.md), [Image assets](image-assets.md), [Asset inventory](asset-inventory.md) |
+| Dependencies and security | [Dependency register](dependency-register.md), [External resources](external-resources.md), [Privacy](privacy.md), [Threat model](threat-model.md), [API status](api.md), [Database status](database.md) |
+| Accessibility and quality | [Accessibility](accessibility.md), [Accessibility testing](accessibility-testing.md), [Compatibility](compatibility.md), [Performance](performance.md), [SEO](seo.md), [Testing](testing.md), [Testing matrix](testing-matrix.md), [Error handling](error-handling.md) |
+| Hosting and operations | [Deployment](deployment.md), [Hosting checklist](hosting-checklist.md), [Operations](operations.md), [Observability](observability.md), [Maintenance](maintenance.md), [Disaster recovery](disaster-recovery.md) |
+| Support and limitations | [FAQ](faq.md), [Troubleshooting](troubleshooting.md), [Glossary](glossary.md), [Limitations and roadmap](limitations-and-roadmap.md) |
 
 ## 🗺️ Site map
 
@@ -42,21 +35,22 @@ flowchart TD
   Y --> CDN
 ```
 
-## 🧱 Documentation principles
+## 🖼️ Visual documentation
 
-1. Describe only behaviour present in the repository.
-2. Do not describe placeholder search controls or external widgets as working features unless verified.
-3. Use relative paths and preserve filename case.
-4. Record image source and usage permission before redistributing artwork.
-5. Keep external resources HTTPS-based and review integrity attributes.
-6. Do not commit personal data, private source files, secrets, or unlicensed images.
-7. Keep Mermaid diagrams editable and update this index when guides change.
+- [Project banner](../assets/art-gallery-banner.svg)
+- [Architecture overview](../assets/architecture-overview.svg)
+- [Visitor journey](../assets/visitor-journey.svg)
+- [Artwork publishing flow](../assets/artwork-publishing-flow.svg)
 
 ## 🏛️ Repository policies
 
-- [Contributing](../CONTRIBUTING.md): branch, code, accessibility, and asset rules.
-- [Security policy](../SECURITY.md): dependency, embed, and private reporting guidance.
-- [Governance](../GOVERNANCE.md): project stewardship and decision principles.
-- [Accessibility statement](../ACCESSIBILITY.md): site accessibility expectations.
-- [Release process](../RELEASE.md): validation and rollback.
-- [Maintainers](../MAINTAINERS.md): repository ownership and responsibilities.
+- [Contributing](../CONTRIBUTING.md)
+- [Security policy](../SECURITY.md)
+- [Governance](../GOVERNANCE.md)
+- [Accessibility statement](../ACCESSIBILITY.md)
+- [Release process](../RELEASE.md)
+- [Maintainers](../MAINTAINERS.md)
+
+## Documentation principles
+
+Describe only implemented behaviour. Label proposals as proposals. Do not invent image provenance, deployed demo URLs, screenshots, test results, API endpoints, or database schemas. Update this index when guides change.
