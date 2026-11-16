@@ -1,0 +1,110 @@
+name: Static site quality checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "**.css"
+      - "**.js"
+      - "images/**"
+      - ".github/workflows/quality.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "**.css"
+      - "**.js"
+      - "images/**"
+      - ".github/workflows/quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gallery-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate local page assets and links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate local HTML references
+        shell: bash
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlparse, unquote
+
+          ROOT = Path(".").resolve()
+          PAGES = [Path("index.html"), Path("about.html"), Path("youtube.html")]
+
+          class ReferenceParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.refs = []
+                  self.ids = set()
+                  self.links = []
+
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  element_id = attrs.get("id")
+                  if element_id:
+                      self.ids.add(element_id)
+                  if tag in {"img", "script", "iframe", "source"}:
+                      field = "src"
+                  elif tag in {"link"}:
+                      field = "href"
+                  else:
+                      field = None
+                  if field and attrs.get(field):
+                      self.refs.append((tag, field, attrs[field]))
+                  if tag == "a" and attrs.get("href"):
+                      self.links.append(attrs["href"])
+
+          failures = []
+          for page in PAGES:
+              if not page.exists():
+                  failures.append(f"Missing required page: {page}")
+                  continue
+              parser = ReferenceParser()
+              parser.feed(page.read_text(encoding="utf-8"))
+              for tag, field, raw in parser.refs:
+                  parsed = urlparse(raw)
+                  if parsed.scheme or raw.startswith(("#", "data:")):
+                      continue
+                  target = unquote(parsed.path)
+                  if not target:
+                      continue
+                  candidate = (page.parent / target).resolve()
+                  if not candidate.exists():
+                      failures.append(f"{page}: missing {tag} {field} -> {raw}")
+              for href in parser.links:
+                  parsed = urlparse(href)
+                  if parsed.scheme or href.startswith(("#", "mailto:", "tel:")):
+                      continue
+                  target = unquote(parsed.path)
+                  if not target:
+                      continue
+                  candidate = (page.parent / target).resolve()
+                  if not candidate.exists():
+                      failures.append(f"{page}: broken local link -> {href}")
+                  elif parsed.fragment and candidate.suffix.lower() in {".html", ".htm"} and candidate.exists():
+                      try:
+                          target_parser = ReferenceParser()
+                          target_parser.feed(candidate.read_text(encoding="utf-8"))
+                          if parsed.fragment not in target_parser.ids:
+                              failures.append(f"{page}: missing anchor #{parsed.fragment} in {candidate}")
+                      except UnicodeDecodeError:
+                          pass
+              print(f"Checked {page}")
+          if failures:
+              print("\n".join(failures))
+              raise SystemExit(1)
+          print("All required pages and local references exist.")
+          PY
