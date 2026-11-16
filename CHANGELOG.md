@@ -16,11 +16,11 @@ User-visible changes to Art Gallery are recorded here. Planned work belongs in [
 
 ### Changed
 - README now documents actual page structure, carousel, external resources, limitations, and local setup.
-- README automation now runs weekly or manually instead of committing timestamp changes every hour.
+- Replaced automatic README timestamp commits with read-only documentation checks to avoid competing commits on the default branch.
 - Contribution and security guidelines now address static-site, CDN, widget, and artwork-specific risks.
 
 ### Validation
-- Static link and asset checks are being introduced.
+- The GitHub Actions quality workflow runs seven validator unit tests and checks local HTML/CSS references, Markdown links/code fences, and SVG/XML assets.
 - Manual cross-browser and accessibility review remains required before claiming release readiness.
 
 ## Initial project version
