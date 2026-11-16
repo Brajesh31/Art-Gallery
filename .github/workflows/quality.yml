@@ -7,7 +7,11 @@ on:
       - "**.html"
       - "**.css"
       - "**.js"
+      - "**.md"
+      - "**.svg"
       - "images/**"
+      - "scripts/**"
+      - "tests/**"
       - ".github/workflows/quality.yml"
   pull_request:
     branches: [main]
@@ -15,7 +19,11 @@ on:
       - "**.html"
       - "**.css"
       - "**.js"
+      - "**.md"
+      - "**.svg"
       - "images/**"
+      - "scripts/**"
+      - "tests/**"
       - ".github/workflows/quality.yml"
   workflow_dispatch:
 
@@ -28,94 +36,19 @@ concurrency:
 
 jobs:
   validate:
-    name: Validate local pages, assets, and stylesheets
+    name: Validate static site and repository documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Validate local HTML and CSS references
-        shell: bash
-        run: |
-          python - <<'PY'
-          import re
-          from html.parser import HTMLParser
-          from pathlib import Path
-          from urllib.parse import unquote, urlparse
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-          REQUIRED_PAGES = [Path("index.html"), Path("about.html"), Path("youtube.html")]
-          failures = []
+      - name: Run validator unit tests
+        run: python -m unittest discover -s tests -v
 
-          class ReferenceParser(HTMLParser):
-              def __init__(self):
-                  super().__init__()
-                  self.refs = []
-                  self.ids = set()
-                  self.links = []
-
-              def handle_starttag(self, tag, attrs):
-                  attrs = dict(attrs)
-                  if attrs.get("id"):
-                      self.ids.add(attrs["id"])
-                  field = None
-                  if tag in {"img", "script", "iframe", "source"}:
-                      field = "src"
-                  elif tag == "link":
-                      field = "href"
-                  if field and attrs.get(field):
-                      self.refs.append((tag, field, attrs[field]))
-                  if tag == "a" and attrs.get("href"):
-                      self.links.append(attrs["href"])
-
-          def local_target(base, raw):
-              parsed = urlparse(raw.strip().strip("'\""))
-              if parsed.scheme or parsed.netloc or raw.startswith(("#", "data:", "mailto:", "tel:", "javascript:")):
-                  return None, parsed
-              target = unquote(parsed.path)
-              if not target:
-                  return None, parsed
-              return (base / target).resolve(), parsed
-
-          def check_html(page):
-              parser = ReferenceParser()
-              parser.feed(page.read_text(encoding="utf-8"))
-              for tag, field, raw in parser.refs:
-                  target, _ = local_target(page.parent, raw)
-                  if target is not None and not target.exists():
-                      failures.append(f"{page}: missing {tag} {field} -> {raw}")
-              for raw in parser.links:
-                  target, parsed = local_target(page.parent, raw)
-                  if target is not None and not target.exists():
-                      failures.append(f"{page}: broken local link -> {raw}")
-                  elif target is not None and parsed.fragment and target.suffix.lower() in {".html", ".htm"} and target.exists():
-                      target_parser = ReferenceParser()
-                      target_parser.feed(target.read_text(encoding="utf-8"))
-                      if parsed.fragment not in target_parser.ids:
-                          failures.append(f"{page}: missing anchor #{parsed.fragment} in {target}")
-
-          def check_css(css_path):
-              content = css_path.read_text(encoding="utf-8")
-              for match in re.finditer(r"url\(\s*(['\"]?)(.*?)\1\s*\)", content, re.IGNORECASE):
-                  raw = match.group(2).strip()
-                  if not raw or raw.startswith(("data:", "http://", "https://", "//", "#")):
-                      continue
-                  target, _ = local_target(css_path.parent, raw)
-                  if target is not None and not target.exists():
-                      failures.append(f"{css_path}: missing CSS url() target -> {raw}")
-
-          for page in REQUIRED_PAGES:
-              if not page.exists():
-                  failures.append(f"Missing required page: {page}")
-                  continue
-              check_html(page)
-              print(f"Checked HTML: {page}")
-
-          for css_path in Path(".").rglob("*.css"):
-              if ".git" not in css_path.parts:
-                  check_css(css_path)
-                  print(f"Checked CSS: {css_path}")
-
-          if failures:
-              print("\n".join(failures))
-              raise SystemExit(1)
-          print("All required pages and local HTML/CSS references exist.")
-          PY
+      - name: Validate HTML, CSS, Markdown links, and SVG assets
+        run: python scripts/validate_repository.py
